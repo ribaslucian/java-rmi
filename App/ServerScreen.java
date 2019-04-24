@@ -1,5 +1,6 @@
 package App;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class ServerScreen extends javax.swing.JFrame {
@@ -8,6 +9,7 @@ public class ServerScreen extends javax.swing.JFrame {
 
     public ServerScreen(Server server) {
         initComponents();
+        populate();
         setVisible(true);
         this.server = server;
     }
@@ -37,16 +39,28 @@ public class ServerScreen extends javax.swing.JFrame {
         }
     }
 
-    public javax.swing.JTable getTableOffers() {
+    public JTable getTableOffers() {
         return jTableOffers;
     }
 
-    public javax.swing.JTable getTableBedrooms() {
+    public JTable getTableBedrooms() {
         return jTableBedrooms;
     }
 
-    public javax.swing.JTable getTableFlights() {
+    public JTable getTableFlights() {
         return jTableFlights;
+    }
+    
+    public void populate() {
+        DefaultTableModel tableBedrooms = (DefaultTableModel) jTableBedrooms.getModel();
+        tableBedrooms.addRow(new Object[]{"c1", "h1", new Float(100)});
+        tableBedrooms.addRow(new Object[]{"c2", "h2", new Float(100)});
+        tableBedrooms.addRow(new Object[]{"c1", "h2", new Float(100)});
+        tableBedrooms.addRow(new Object[]{"c2", "h1", new Float(100)});
+        
+        DefaultTableModel tableFlights = (DefaultTableModel) jTableFlights.getModel();
+        tableFlights.addRow(new Object[]{"c1", new Float(100)});
+        tableFlights.addRow(new Object[]{"c2", new Float(100)});
     }
 
     // --
@@ -75,8 +89,6 @@ public class ServerScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         JTextFieldPrice = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldPeopleNumber = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -133,14 +145,6 @@ public class ServerScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Número de Pessoas (Quarto):");
-
-        jTextFieldPeopleNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPeopleNumberActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 9)); // NOI18N
         jLabel6.setText("Cadastre um voo");
 
@@ -167,11 +171,11 @@ public class ServerScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Hotel", "Cidade", "Num. de Pessoas", "Preço"
+                "Cidade", "Hotel", "Preço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -229,39 +233,36 @@ public class ServerScreen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldPrice)
+                    .addComponent(jTextFieldCityDestiny)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButtonNewBedroom)
+                        .addGap(40, 40, 40))
+                    .addComponent(jtextFieldHotel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jTextFieldHotelCity)
+                    .addComponent(JTextFieldPrice)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtextFieldHotel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JTextFieldPrice)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(jTextFieldPeopleNumber)
-                            .addComponent(jTextFieldHotelCity)
-                            .addComponent(jTextFieldPrice)
-                            .addComponent(jTextFieldCityDestiny)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jButtonNewBedroom))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jButtonNewFlight)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jSeparator2))
-                .addGap(18, 18, 18)
+                                .addGap(41, 41, 41)
+                                .addComponent(jButtonNewFlight))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 1, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addGap(370, 370, 370))
                     .addGroup(layout.createSequentialGroup()
@@ -282,32 +283,38 @@ public class ServerScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtextFieldHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel12)
-                        .addGap(4, 4, 4)
+                        .addGap(3, 3, 3)
                         .addComponent(jTextFieldHotelCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPeopleNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(2, 2, 2)
+                        .addComponent(jtextFieldHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonNewBedroom)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(16, 16, 16)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
@@ -318,17 +325,7 @@ public class ServerScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonNewFlight))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNewFlight)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,10 +346,6 @@ public class ServerScreen extends javax.swing.JFrame {
         server.notifyIfMatches();
     }//GEN-LAST:event_jButtonNewFlightActionPerformed
 
-    private void jTextFieldPeopleNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPeopleNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPeopleNumberActionPerformed
-
     private void JTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTextFieldPriceActionPerformed
@@ -360,9 +353,8 @@ public class ServerScreen extends javax.swing.JFrame {
     private void jButtonNewBedroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewBedroomActionPerformed
         DefaultTableModel t = (DefaultTableModel) jTableBedrooms.getModel();
         t.addRow(new Object[]{
-            (String) jtextFieldHotel.getText(),
             (String) jTextFieldHotelCity.getText(),
-            new Integer(jTextFieldPeopleNumber.getText()),
+            (String) jtextFieldHotel.getText(),
             new Float(JTextFieldPrice.getText())
         });
 
@@ -415,7 +407,6 @@ public class ServerScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -432,7 +423,6 @@ public class ServerScreen extends javax.swing.JFrame {
     private javax.swing.JTable jTableOffers;
     private javax.swing.JTextField jTextFieldCityDestiny;
     private javax.swing.JTextField jTextFieldHotelCity;
-    private javax.swing.JTextField jTextFieldPeopleNumber;
     private javax.swing.JTextField jTextFieldPrice;
     private javax.swing.JTextField jtextFieldHotel;
     // End of variables declaration//GEN-END:variables
