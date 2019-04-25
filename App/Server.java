@@ -116,7 +116,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public void payOffer(OfferInterface offer) throws RemoteException {
+    public Boolean payOffer(OfferInterface offer) throws RemoteException {
 
         // oferta atual
         String clientId = offer.getClientId();
@@ -134,7 +134,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
             // alguma tabela nao possui registro
             if (tableBedrooms.getRowCount() == 0 || tableFlights.getRowCount() == 0) {
-                return;
+                clients.get(clientId).notifyOffer("(OPS) Não conseguimos encontrar seu pacote, tente novamente mais tarde.");
+                return false;
             }
 
             // para cada quarto cadastrado, verificar se ha combinacao com todos os voos
@@ -143,9 +144,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
                 String bedroomCity = (String) tableBedrooms.getValueAt(j, 0);
                 String bedroomHotel = (String) tableBedrooms.getValueAt(j, 1);
                 Float bedroomPrice = (Float) tableBedrooms.getValueAt(j, 2);
-                
-                System.out.println("offerCity: " + offerCity + ", bedroomCity: " + bedroomCity);
-                System.out.println("offerHotel: " + offerHotel + ", bedroomHotel: " + bedroomHotel);
 
                 // verificar se o hotel e cidade do Quarto eh o mesmo do interesse
                 if (bedroomCity.equals(offerCity) && bedroomHotel.equals(offerHotel) && bedroomPrice <= offerMaxPrice) {
@@ -166,7 +164,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
                             
                             // notificamos o cliente
                             clients.get(clientId).notifyOffer("(COMPRA) Parabéns! Você efetuou a compra do pacote " + offerId + ".");
-                            break;
+                            return true;
                         }
                     }
 
@@ -177,6 +175,9 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
+        clients.get(clientId).notifyOffer("(OPS) Não conseguimos encontrar seu pacote, tente novamente mais tarde.");
+        return false;
     }
 
 }

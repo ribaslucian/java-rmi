@@ -77,8 +77,9 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     @Override
     public void payOffer(Integer id) {
         try {
-            getServer().payOffer(offers.get(id));
-            cancelOffer(id);
+            if (getServer().payOffer(offers.get(id))) {
+                cancelOffer(id);
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
