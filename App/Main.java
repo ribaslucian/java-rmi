@@ -6,7 +6,7 @@ public class Main {
         try {
 
             Client c1 = new Client("cliente-1");
-//            Client c2 = new Client("cliente-2");
+            Client c2 = new Client("cliente-2");
 
             Server.start();
 

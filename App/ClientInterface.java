@@ -9,5 +9,6 @@ public interface ClientInterface extends Remote {
     public String getId() throws RemoteException;
     public void notifyOffer(String message) throws RemoteException;
     public void cancelOffer(Integer id) throws RemoteException;;
+    public void payOffer(Integer id) throws RemoteException;;
 
 }

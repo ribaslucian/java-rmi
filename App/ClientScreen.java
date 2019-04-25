@@ -15,13 +15,13 @@ public class ClientScreen extends javax.swing.JFrame {
         setVisible(true);
         this.client = client;
         jLabel1.setText("Olá " + client.id + "! Registre interesse abaixo:");
-        
+
         jTextFieldCity.setText("c1");
         jTextFieldHotel.setText("h1");
         jTextFieldMaxPrice.setText("100");
         jTextFieldPeopleNumber.setText("2");
-        jTextFieldDateDeparture.setText("01/01/2019");
-        jTextFieldDateReturn.setText("02/01/2019");
+        jTextFieldDateDeparture.setText("01/01/2020");
+        jTextFieldDateReturn.setText("02/01/2020");
     }
 
     public void addOffer(Offer offer) {
@@ -54,11 +54,9 @@ public class ClientScreen extends javax.swing.JFrame {
     }
 
     // --
-    
     /**
      * @autoGenerateCode
      */
-    
     /**
      * Creates new form ClientScreen
      */
@@ -100,7 +98,7 @@ public class ClientScreen extends javax.swing.JFrame {
         jTextFieldDateReturn = new javax.swing.JTextField();
         jTextFieldPeopleNumber = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonPayOffer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,7 +168,12 @@ public class ClientScreen extends javax.swing.JFrame {
 
         jLabel10.setText("Pessoas:");
 
-        jButton1.setText("Comprar");
+        jButtonPayOffer.setText("Comprar");
+        jButtonPayOffer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPayOfferActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,18 +224,16 @@ public class ClientScreen extends javax.swing.JFrame {
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButtonCancelOffer)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton1))
+                                        .addComponent(jButtonPayOffer))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(41, 41, 41)))
                                 .addGap(2, 2, 2))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextFieldCodeCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(55, 55, 55)))))
                 .addContainerGap())
@@ -273,7 +274,7 @@ public class ClientScreen extends javax.swing.JFrame {
                         .addComponent(jTextFieldCodeCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(jButtonPayOffer)
                             .addComponent(jButtonCancelOffer))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,7 +301,7 @@ public class ClientScreen extends javax.swing.JFrame {
             client.addOffer(new Offer(new HashMap<String, Object>() {
                 {
                     put("city", jTextFieldCity.getText());
-                    put("hotel",jTextFieldHotel.getText());
+                    put("hotel", jTextFieldHotel.getText());
                     put("people", new Integer(jTextFieldPeopleNumber.getText()));
                     put("dateDeparture", jTextFieldDateDeparture.getText());
                     put("dateReturn", jTextFieldDateReturn.getText());
@@ -319,6 +320,10 @@ public class ClientScreen extends javax.swing.JFrame {
     private void jTextFieldCodeCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodeCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodeCancelActionPerformed
+
+    private void jButtonPayOfferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayOfferActionPerformed
+        client.payOffer(new Integer(jTextFieldCodeCancel.getText()));
+    }//GEN-LAST:event_jButtonPayOfferActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,9 +361,9 @@ public class ClientScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelOffer;
     private javax.swing.JButton jButtonNewOffer;
+    private javax.swing.JButton jButtonPayOffer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -7,5 +7,6 @@ public interface ServerInterface extends Remote {
 
     public void addOffer(OfferInterface offerData) throws RemoteException;
     public void cancelOffer(String clientId, Integer offerId) throws RemoteException;
+    public void payOffer(OfferInterface offer) throws RemoteException;
 
 }

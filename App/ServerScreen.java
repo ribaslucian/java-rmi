@@ -89,7 +89,7 @@ public class ServerScreen extends javax.swing.JFrame {
 
         DefaultTableModel tableFlights = (DefaultTableModel) jTableFlights.getModel();
         tableFlights.addRow(new Object[]{"c1", new Float(100), "01/01/2020", "02/01/2020"});
-        tableFlights.addRow(new Object[]{"c2", new Float(100), "01/02/2020", "01/02/2020"});
+        tableFlights.addRow(new Object[]{"c2", new Float(100), "01/02/2020", ""});
     }
 
     // --
