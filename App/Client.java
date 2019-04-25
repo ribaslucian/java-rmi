@@ -14,6 +14,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     
     protected Client() throws RemoteException {
         super();
+        id = "client-00";
     }
 
     protected Client(String id) throws RemoteException {
@@ -22,16 +23,16 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
         screen = new ClientScreen(this);
     }
 
-    public void addOffer(String city, String hotel, float maxPrice, String logistic) {
-        Integer id = offersCount + 1;
-        offersCount = offersCount + 1;
-        
-        Offer o = new Offer(this.id, id, city, hotel, maxPrice, logistic);
-
-        screen.addOffer(o);
-
+    public void addOffer(Offer offer) {
         try {
-            getServer().addOffer(this, id, city, hotel, maxPrice, logistic);
+            
+            // definindo ID no offerData
+            offer.put("id", (offersCount = offersCount + 1));
+            offer.put("client", this);
+
+            screen.addOffer(offer);
+            getServer().addOffer(offer);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

@@ -1,24 +1,47 @@
 package App;
 
-class Offer {
-    
-    public ClientInterface client;
-    public String clientId;
-    public Integer id;
-    public String city;
-    public String hotel;
-    public float price;
-    public String logistic;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 
-    public Offer(String clientId, Integer id, String city, String hotel, float price, String logistic) {
-        this.clientId = clientId;
-        this.id = id;
-        this.city = city;
-        this.hotel = hotel;
-        this.price = price;
-        this.logistic = logistic;
+class Offer extends UnicastRemoteObject implements OfferInterface {
+
+    /**
+     * Chaves validas:
+     *
+     * <ClientInterface> client
+     * <Integer> id
+     * <String> city
+     * <String> hotel
+     * <Integer> people
+     * <String> dateDeparture
+     * <String> dateReturn
+     * <String> logistic
+     * <Float> maxPrice
+     */
+    public HashMap<String, Object> data = new HashMap<String, Object>() {
+        {
+            put("name", "lucian");
+        }
+    };
+
+    public Offer(HashMap data) throws RemoteException {
+        super();
+        this.data = data;
+    }
+
+    @Override
+    public void put(String key, Object value) {
+        data.put(key, value);
+    }
+
+    @Override
+    public Object get(String key) {
+        return data.get(key);
     }
     
-    
-    
+    protected Offer() throws RemoteException {
+        super();
+    }
+
 }

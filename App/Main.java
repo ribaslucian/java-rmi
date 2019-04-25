@@ -1,15 +1,13 @@
 package App;
 
-import javax.swing.table.DefaultTableModel;
-
 public class Main {
 
     public static void main(String[] args) {
         try {
 
             Client c1 = new Client("cliente-1");
-            Client c2 = new Client("cliente-2");
-            
+//            Client c2 = new Client("cliente-2");
+
             Server.start();
 
         } catch (Exception ex) {
