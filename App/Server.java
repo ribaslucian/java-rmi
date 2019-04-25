@@ -15,7 +15,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private static Registry referenceNamesService;
 
     // <ClientId, ClientReference>
-    private HashMap<String, ClientInterface> clients = new HashMap<>();
+    private HashMap<String, ClientInterfaceRemote> clients = new HashMap<>();
 
     protected Server() throws RemoteException {
         super();
@@ -104,8 +104,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public void addOffer(OfferInterface offer) throws RemoteException {
-        ClientInterface client = (ClientInterface) offer.get("client");
-        clients.put(client.getId(), client);
+        ClientInterfaceRemote client = (ClientInterfaceRemote) offer.get("client");
+        clients.put((String) offer.get("clientId"), client);
         screen.addOffer(offer);
         notifyIfMatches();
     }
@@ -119,7 +119,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     public Boolean payOffer(OfferInterface offer) throws RemoteException {
 
         // oferta atual
-        String clientId = offer.getClientId();
+        String clientId = (String) offer.get("clientId");
         Integer offerId = (Integer) offer.get("id");
         String offerCity = (String) offer.get("city");
         String offerHotel = (String) offer.get("hotel");

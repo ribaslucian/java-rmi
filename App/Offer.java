@@ -12,6 +12,7 @@ class Offer extends UnicastRemoteObject implements OfferInterface {
      * Chaves validas:
      *
      * <ClientInterface> client
+     * <ClientId> client.getId()
      * <Integer> id
      * <String> city
      * <String> hotel
@@ -37,17 +38,17 @@ class Offer extends UnicastRemoteObject implements OfferInterface {
         return data.get(key);
     }
 
-    @Override
-    public String getClientId() {
-        try {
-            ClientInterface client = (ClientInterface) data.get("client");
-            return (String) client.getId();
-        } catch (RemoteException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
-    }
+//    @Override
+//    public String getClientId() {
+//        try {
+//            ClientInterfaceRemote client = (ClientInterfaceRemote) data.get("client");
+//            return (String) client.getId();
+//        } catch (RemoteException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return null;
+//    }
 
     protected Offer() throws RemoteException {
         super();

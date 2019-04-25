@@ -37,11 +37,11 @@ public class ServerScreen extends javax.swing.JFrame {
 
     public void addOffer(OfferInterface offer) {
         try {
-            ClientInterface client = (ClientInterface) offer.get("client");
+            ClientInterfaceRemote client = (ClientInterfaceRemote) offer.get("client");
             DefaultTableModel model = (DefaultTableModel) jTableOffers.getModel();
 
             model.addRow(new Object[]{
-                (String) client.getId(),
+                (String) offer.get("clientId"),
                 (Integer) offer.get("id"),
                 (String) offer.get("city"),
                 (String) offer.get("hotel"),

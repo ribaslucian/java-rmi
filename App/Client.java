@@ -7,7 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
-public class Client extends UnicastRemoteObject implements ClientInterface {
+public class Client extends UnicastRemoteObject implements ClientInterface, ClientInterfaceRemote {
 
     public String id;
     public ClientScreen screen;
@@ -32,6 +32,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
             // definindo ID no offerData
             offer.put("id", (offersCount = offersCount + 1));
             offer.put("client", this);
+            offer.put("clientId", id);
 
             offers.put(offersCount, offer);
             screen.addOffer(offer);
@@ -69,10 +70,10 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
         screen.log(message);
     }
 
-    @Override
-    public String getId() throws RemoteException {
-        return id;
-    }
+//    @Override
+//    public String getId() throws RemoteException {
+//        return id;
+//    }
 
     @Override
     public void payOffer(Integer id) {
