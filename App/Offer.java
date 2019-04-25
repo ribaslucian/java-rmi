@@ -16,14 +16,9 @@ class Offer extends UnicastRemoteObject implements OfferInterface {
      * <Integer> people
      * <String> dateDeparture
      * <String> dateReturn
-     * <String> logistic
      * <Float> maxPrice
      */
-    public HashMap<String, Object> data = new HashMap<String, Object>() {
-        {
-            put("name", "lucian");
-        }
-    };
+    public HashMap<String, Object> data = new HashMap< >();
 
     public Offer(HashMap data) throws RemoteException {
         super();

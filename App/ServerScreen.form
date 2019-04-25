@@ -348,7 +348,7 @@
         <Component class="javax.swing.JTable" name="jTableOffers">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
+              <Table columnCount="8" rowCount="0">
                 <Column editable="true" title="Cliente" type="java.lang.String"/>
                 <Column editable="true" title="Interesse" type="java.lang.Integer"/>
                 <Column editable="true" title="Cidade" type="java.lang.String"/>
@@ -356,17 +356,11 @@
                 <Column editable="true" title="Pessoas" type="java.lang.Integer"/>
                 <Column editable="false" title="Dt. de Ida" type="java.lang.String"/>
                 <Column editable="false" title="Dt. de Volta" type="java.lang.String"/>
-                <Column editable="true" title="Log&#xed;stica" type="java.lang.String"/>
                 <Column editable="true" title="Pre&#xe7;o Max." type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

@@ -27,7 +27,6 @@ public class ServerScreen extends javax.swing.JFrame {
 //                    put("people", 123);
 //                    put("dateDeparture", "01/01/2019");
 //                    put("dateReturn", "02/01/2019");
-//                    put("logistic", "ida");
 //                    put("maxPrice", new Float(10));
 //                }
 //            });
@@ -49,7 +48,6 @@ public class ServerScreen extends javax.swing.JFrame {
                 (Integer) offer.get("people"),
                 (String) offer.get("dateDeparture"),
                 (String) offer.get("dateReturn"),
-                (String) offer.get("logistic"),
                 (Float) offer.get("maxPrice")
             });
         } catch (RemoteException e) {
@@ -90,8 +88,8 @@ public class ServerScreen extends javax.swing.JFrame {
         tableBedrooms.addRow(new Object[]{"c2", "h1", new Float(100)});
 
         DefaultTableModel tableFlights = (DefaultTableModel) jTableFlights.getModel();
-        tableFlights.addRow(new Object[]{"c1", new Float(100)});
-        tableFlights.addRow(new Object[]{"c2", new Float(100)});
+        tableFlights.addRow(new Object[]{"c1", new Float(100), "01/01/2020", "02/01/2020"});
+        tableFlights.addRow(new Object[]{"c2", new Float(100), "01/02/2020", "01/02/2020"});
     }
 
     // --
@@ -238,14 +236,14 @@ public class ServerScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cliente", "Interesse", "Cidade", "Hotel", "Pessoas", "Dt. de Ida", "Dt. de Volta", "Logística", "Preço Max."
+                "Cliente", "Interesse", "Cidade", "Hotel", "Pessoas", "Dt. de Ida", "Dt. de Volta", "Preço Max."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, false, false, true, true
+                true, true, true, true, true, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
